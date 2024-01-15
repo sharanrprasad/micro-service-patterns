@@ -1,5 +1,5 @@
 import {DynamoDBClient} from '@aws-sdk/client-dynamodb';
-import {DynamoDBDocumentClient} from '@aws-sdk/lib-dynamodb';
+import {DynamoDBDocument} from '@aws-sdk/lib-dynamodb';
 import {ApiClient} from "./api.client";
 import {ConfigClient, ConfigKeys} from "./config.client";
 import {AppApiClient} from "./ioc";
@@ -7,7 +7,7 @@ import {AppApiClient} from "./ioc";
 @AppApiClient
 export  class AwsDynamoDbClient extends ApiClient{
   public ddClient: DynamoDBClient;
-  public ddDocClient: DynamoDBDocumentClient;
+  public ddDocClient: DynamoDBDocument;
 
   constructor(config: ConfigClient) {
       super();
@@ -15,7 +15,7 @@ export  class AwsDynamoDbClient extends ApiClient{
           region: config.get(ConfigKeys.AwsRegion) as string,
           endpoint: config.get(ConfigKeys.DatabaseUrl) as string
       });
-      this.ddDocClient = DynamoDBDocumentClient.from(this.ddClient);
+      this.ddDocClient = DynamoDBDocument.from(this.ddClient);
   }
 
 

@@ -23,3 +23,9 @@ export function AppService<T extends any>(target: Constructor<T>) {
     // Bind service as a singleton injectable
     singleton()(target);
 }
+
+
+export function AppRepository<T extends any>(target: Constructor<T>) {
+    // Bind service as a singleton injectable
+    singleton()(target);
+}

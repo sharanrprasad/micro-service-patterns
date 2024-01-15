@@ -8,16 +8,18 @@ import {
     Route,
     SuccessResponse,
 } from "tsoa";
-import {User} from "./user";
-import {UserService, UserCreationParams} from "./user.service";
+import {UserQueryDto} from "./user";
+import {UserCreationParams} from "./user.commands.service";
 import { injectable } from 'tsyringe';
+import {UserCommandsService} from "./user.commands.service";
+import {UserQueriesService} from "./user.queries.service";
 
 
 @injectable()
 @Route("users")
 export class UserController extends Controller {
 
-    constructor(private userService: UserService) {
+    constructor(protected userCommandsService: UserCommandsService, protected userQueriesService: UserQueriesService) {
         super();
     }
 
@@ -25,8 +27,8 @@ export class UserController extends Controller {
     public async getUser(
         @Path() userId: number,
         @Query() name?: string
-    ): Promise<User> {
-        return this.userService.get(userId, name);
+    ): Promise<UserQueryDto> {
+        return this.userQueriesService.get(userId, name);
     }
 
     @SuccessResponse("201", "Created") // Custom success response
@@ -35,7 +37,7 @@ export class UserController extends Controller {
         @Body() requestBody: UserCreationParams
     ): Promise<void> {
         this.setStatus(201); // set return status 201
-        this.userService.create(requestBody);
+        await this.userCommandsService.create(requestBody);
         return;
     }
 }
