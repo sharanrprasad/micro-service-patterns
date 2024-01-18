@@ -10,5 +10,8 @@ export interface UserQueryDto {
 export interface UserCommandDto {
     email: string;
     name: string;
-    status?: "Employed" | "Looking" | "Retired";
 }
+
+
+export const Db_Exchange = 'db-exchange';
+export const User_Command_Routing_Key = 'db.user.update';

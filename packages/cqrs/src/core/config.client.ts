@@ -5,7 +5,8 @@ import {AppApiClient} from "./ioc";
 
 export enum ConfigKeys {
     DatabaseUrl = 'DatabaseUrl',
-    AwsRegion = 'AwsRegion'
+    AwsRegion = 'AwsRegion',
+    AppQueueUrl = 'AppQueueUrl'
 }
 
 @AppApiClient
@@ -21,6 +22,7 @@ export class ConfigClient extends ApiClient {
         return new Promise(resolve => {
             this.configValues.set(ConfigKeys.AwsRegion, 'us-west-2');
             this.configValues.set(ConfigKeys.DatabaseUrl, 'http://localhost:8000');
+            this.configValues.set(ConfigKeys.AppQueueUrl, 'amqp://rabbitmq:rabbitmq@localhost:5672')
             resolve()
         })
     }

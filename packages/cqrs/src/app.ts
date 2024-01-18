@@ -7,6 +7,7 @@ import {container} from 'tsyringe';
 import {ConfigClient} from "./core/config.client";
 import {LogClient} from "./core/log.client";
 import {APP_API_CLIENTS_CLASS} from "./core/ioc";
+import {UserQueryConsumer} from "./modules/user/user.query.consumer";
 
 export class AppServer {
     public app: ExpressApp;
@@ -19,6 +20,8 @@ export class AppServer {
         const loggerClient = container.resolve(LogClient);
         const configClient = container.resolve(ConfigClient);
         await configClient.init(loggerClient);
+
+         container.registerInstance(UserQueryConsumer, new UserQueryConsumer(configClient, loggerClient));
 
         for(const clientClass of APP_API_CLIENTS_CLASS){
             if(clientClass !== LogClient && clientClass !== ConfigClient){

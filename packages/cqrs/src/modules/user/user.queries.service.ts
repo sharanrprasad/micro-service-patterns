@@ -1,7 +1,9 @@
 import {UserQueryDto} from "./user";
 import {LogClient} from "../../core/log.client";
 import {UserQueriesRepository} from "./user.queries.repository";
+import {AppService} from "../../core/ioc";
 
+@AppService
 export class UserQueriesService {
     constructor(protected logClient: LogClient, protected userQueryRepository: UserQueriesRepository) {
 

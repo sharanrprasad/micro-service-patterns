@@ -9,3 +9,15 @@ services:
     volumes:
       - "./docker/dynamodb:/home/dynamodblocal/data"
     working_dir: /home/dynamodblocal
+  rabbitmq-local:
+    image: "rabbitmq:3.12-management"
+    hostname: "rabbit1"
+    environment:
+      RABBITMQ_DEFAULT_USER: "rabbitmq"
+      RABBITMQ_DEFAULT_PASS: "rabbitmq"
+    container_name: "rabbitmq-local"
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+
+

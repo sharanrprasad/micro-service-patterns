@@ -16,8 +16,8 @@ export class UserCommandsRepository extends BaseRepository{
             new PutCommand({
                 TableName: this.TableName,
                 Item: {
-                    pk: id, // Partition Key
-                    sk: id, // Sort Key
+                    PK: id, // Partition Key
+                    SK: id, // Sort Key
                     ...user
                 },
             })
