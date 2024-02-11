@@ -28,17 +28,6 @@ export class TaskRepository extends BaseRepository {
                     }
                 })
             );
-
-
-            // const results = await this.dbClient.ddDocClient.query({
-            //     TableName: this.TableName,
-            //     KeyConditionExpression: 'PK = :id and begins_with(SK, :sorter)',
-            //     ExpressionAttributeValues: {
-            //         ":id": userId,
-            //         ":sorter": 'task'
-            //     }
-            // })
-
             return results.Items as any;
         } catch (e) {
             console.error(e);

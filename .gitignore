@@ -2,3 +2,6 @@ node_modules/
 packages/*/build/
 .idea/
 docker/
+.DS_Store
+**/.env
+**/tsoa-gen

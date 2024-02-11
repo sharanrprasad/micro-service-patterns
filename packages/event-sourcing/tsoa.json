@@ -1,0 +1,21 @@
+{
+  "entryFile": "src/app.ts",
+  "noImplicitAdditionalProperties": "throw-on-extras",
+  "controllerPathGlobs": ["src/**/*.controller.ts"],
+  "spec": {
+    "outputDirectory": "tsoa-gen",
+    "specVersion": 3,
+    "securityDefinitions": {
+      "api_key": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "authorization"
+      }
+    }
+  },
+  "routes": {
+    "routesDir": "tsoa-gen",
+    "iocModule": "src/core/ioc.config.ts",
+    "authenticationModule": "./src/core/authentication.ts"
+  }
+}
